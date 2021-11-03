@@ -2,6 +2,9 @@ package cost.management.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +22,8 @@ public class Dipendente implements Serializable {
 	@Id
 	@Column(name="codice_fiscale")
 	private String codiceFiscale;
-
+	
+	@Column(name="active")
 	private byte active;
 
 	private String cellulare;
@@ -49,6 +53,8 @@ public class Dipendente implements Serializable {
 	private String nome;
 
 	private String residenza;
+	
+	
 
 	//bi-directional many-to-one association to Contratto
 	@OneToMany(mappedBy="dipendente")
@@ -60,6 +66,7 @@ public class Dipendente implements Serializable {
 
 	//bi-directional many-to-one association to DipendenteCommessa
 	@OneToMany(mappedBy="dipendente")
+	@JsonManagedReference(value="dipendente-commessa2")
 	private List<DipendenteCommessa> dipendenteCommesse;
 
 	public Dipendente() {

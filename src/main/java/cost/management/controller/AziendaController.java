@@ -32,6 +32,7 @@ public class AziendaController {
 		System.out.println("INSIDE TEST CONTROLLER FIND ALL AZIENDE");
 		List<Azienda> aziende = new ArrayList<Azienda>();
 		aziende = aziendaService.findAllAziende();
+		System.out.println("AZIENDE: " +aziende.toString());
 		return aziende;
 	}
 	

@@ -33,7 +33,7 @@ public class CommessaController {
 		System.out.println(commessa.getDataFineCommessa());
 
 
-		return commessaService.addCommessa(commessa, id);
+		return commessaService.addCommessa(commessa);
 		
 	}
 }

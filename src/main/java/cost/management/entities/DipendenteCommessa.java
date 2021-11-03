@@ -3,6 +3,7 @@ package cost.management.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
@@ -39,10 +40,12 @@ public class DipendenteCommessa implements Serializable {
 	//bi-directional many-to-one association to Dipendente
 	@ManyToOne
 	@JoinColumn(name= "dipendente_codice_fiscale" ,insertable=false, updatable=false)
+	@JsonBackReference(value="dipendente-commessa2")
 	private Dipendente dipendente;
 
 	//bi-directional many-to-one association to Commessa
 	@ManyToOne
+	@JsonBackReference(value="dipendente-commessa1")
 	@JoinColumn(name="commessa_codice", insertable=false, updatable=false)
 	private Commessa commessa;
 
