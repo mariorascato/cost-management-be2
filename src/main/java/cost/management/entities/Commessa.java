@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
 import java.util.List;
@@ -47,6 +48,7 @@ public class Commessa implements Serializable {
 
 	//bi-directional many-to-one association to DipendenteCommessa
 	@OneToMany(mappedBy="commessa")
+	@JsonManagedReference(value="dipendente-commessa1")
 	private List<DipendenteCommessa> dipendenteCommesse;
 
 	public Commessa() {

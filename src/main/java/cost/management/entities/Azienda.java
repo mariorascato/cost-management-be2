@@ -52,7 +52,8 @@ public class Azienda implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
+/*
 	public List<Dipendente> getDipendenti() {
 		return this.dipendenti;
 	}
@@ -74,5 +75,5 @@ public class Azienda implements Serializable {
 
 		return dipendente;
 	}
-
+*/
 }

@@ -3,6 +3,7 @@ package cost.management.service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -35,16 +36,24 @@ public class DipendenteServiceImpl implements DipendenteService {
 	// aggiungi dipendente
 	@Override
 	public Dipendente addDipendente(Dipendente dipendente, int id) {
-		String message = "Dipendente NON INSERITO!!";
-		Azienda azienda = aziendaRepo.findById(id).get();
-		dipendente.setAzienda(azienda);
 
-		try {
-			return dipRepo.save(dipendente);
-		} catch (IllegalArgumentException ex) {
-			log.info(message);
-			ex.printStackTrace();
+		String message = "Dipendente NON INSERITO!!";
+		String codiceFiscale = dipendente.getCodiceFiscale();
+		Dipendente dipendenteFindByCF = dipRepo.findByCodiceFiscale(codiceFiscale);
+		if (dipendenteFindByCF == null) {
+			Azienda azienda = aziendaRepo.findById(id).get();
+			dipendente.setAzienda(azienda);
+			dipendente.setCreateDate(new Date());
+
+			try {
+				return dipRepo.save(dipendente);
+			} catch (IllegalArgumentException ex) {
+				log.info(message);
+				ex.printStackTrace();
+			}
+
 		}
+		System.out.println("RETURNING NULL");
 		return null;
 	}
 	
@@ -66,9 +75,14 @@ public class DipendenteServiceImpl implements DipendenteService {
 			oldDipendente.setDataNascita(dipendente.getDataNascita());
 			oldDipendente.setEmail(dipendente.getEmail());
 			oldDipendente.setResidenza(dipendente.getResidenza());
+			oldDipendente.setDomicilio(dipendente.getDomicilio());
 			oldDipendente.setLuogoNascita(dipendente.getLuogoNascita());
+			oldDipendente.setEmAziendale(dipendente.getEmAziendale());
 			//System.out.println("*********** updated dipdendente " + oldDipendente + "**********************");
-			return addDipendente(oldDipendente,aziendaId);
+			Azienda azienda = aziendaRepo.findById(aziendaId).get();
+			oldDipendente.setAzienda(azienda);
+			System.out.println("UPDATING DIPENDENTE");
+			return dipRepo.save(oldDipendente);
 
 		} else {
 			log.info("*******Dipendente non trovato!!*****");
@@ -96,7 +110,9 @@ public class DipendenteServiceImpl implements DipendenteService {
 			
 			LocalDate start = new java.sql.Date(dipendente.getDataNascita().getTime()).toLocalDate();
 			LocalDate end = LocalDate.now(); 
+			
 			long years = ChronoUnit.YEARS.between(start, end);
+			
 			dipendente.setAge(years);
 		}
 
@@ -129,12 +145,13 @@ public class DipendenteServiceImpl implements DipendenteService {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public List<Dipendente> findAllDipendentes() {
-		
-		return dipRepo.findAll();
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+
 
 }

@@ -36,14 +36,17 @@ public class DipendenteController {
 	
 	// inserici un dipendente nel db
 	@PostMapping("/dipendenti/{id}")
-	public Dipendente addDipendente(@Valid @RequestBody Dipendente dipendente, @PathVariable String id) { 
+	public Dipendente addDipendente(@Valid @RequestBody Dipendente dipendente,
+			@PathVariable String id) { 
 		return dipService.addDipendente(dipendente, Integer.parseInt(id));
 
 	}
 
+
 	// trova tutti i dipendenti
 	@GetMapping("/dipendenti")
 	public List<Dipendente> findAllDipendenti() {
+		System.out.println("find all dimpendenti VACALLED");
 		List<Dipendente> listaDipendenti = new ArrayList<Dipendente>();
 		listaDipendenti = dipService.findAllDipendenti();
 		return listaDipendenti;
