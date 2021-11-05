@@ -59,5 +59,6 @@ public class CommessaServiceImpl implements CommessaService {
 	public void deleteCommessa(String id) {
 		commessaRepository.deleteById(id);
 	}
-	
+
+
 }

@@ -26,16 +26,16 @@ public class DipendenteCommessa implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="data_fine_attivita")
-	@JsonFormat(pattern="dd/MM/yyyy",shape=JsonFormat.Shape.STRING)
+	//@JsonFormat(pattern="dd/MM/yyyy",shape=JsonFormat.Shape.STRING)
 	private Date dataFineAttivita;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="data_inizio_attivita")
-	@JsonFormat(pattern="dd/MM/yyyy",shape=JsonFormat.Shape.STRING)
+	//@JsonFormat(pattern="dd/MM/yyyy",shape=JsonFormat.Shape.STRING)
 	private Date dataInizioAttivita;
 
 	@Column(name="tariffa_gg")
-	private int tariffaGg;
+	private float tariffaGg;
 
 	//bi-directional many-to-one association to Dipendente
 	@ManyToOne
@@ -84,11 +84,11 @@ public class DipendenteCommessa implements Serializable {
 		this.dataInizioAttivita = dataInizioAttivita;
 	}
 
-	public int getTariffaGg() {
+	public float getTariffaGg() {
 		return this.tariffaGg;
 	}
 
-	public void setTariffaGg(int tariffaGg) {
+	public void setTariffaGg(float tariffaGg) {
 		this.tariffaGg = tariffaGg;
 	}
 
