@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cost.management.entities.Cliente;
 import cost.management.entities.Commessa;
 import cost.management.service.CommessaService;
 
@@ -25,8 +27,8 @@ public class CommessaController {
 	@Autowired
 	private CommessaService commessaService;
 	
-	@PostMapping("/commesse/{id}")
-	private Commessa addCommessa(@RequestBody Commessa commessa, @PathVariable String id) {
+	@PostMapping("/commesse")
+	private Commessa addCommessa(@RequestBody Commessa commessa) {
 		System.out.println("###### INSIDE COMMESSE CONTROLLER");
 		System.out.println(commessa.getDescrizioneCommessa());
 		System.out.println(commessa.getCodice());
@@ -35,6 +37,7 @@ public class CommessaController {
 
 		System.out.println(commessa.getDataInizioCommessa());
 		System.out.println(commessa.getDataFineCommessa());
+		System.out.println(commessa.getCliente());
 
 
 		return commessaService.addCommessa(commessa);
@@ -45,5 +48,9 @@ public class CommessaController {
 	public List<Commessa> findAllCommesse() {
 		System.out.println("INSIDE FIND ALL COMMESSE");
 		return commessaService.findAll();
+	}
+	@PutMapping("/commesse/{codice}")
+	public Commessa archiveCommessa(@PathVariable String codice) {
+		return commessaService.archiveCommessa(codice);
 	}
 }

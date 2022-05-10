@@ -22,7 +22,7 @@ import cost.management.entities.Cliente;
 import cost.management.service.ClienteService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200" )
 @RequestMapping("/api")
 //@Validated
 public class ClienteController {
@@ -76,8 +76,8 @@ public class ClienteController {
 		return clienteService.updateCliente(cli,partitaIva);
 	}
 		
-	@DeleteMapping("/clienti/{partitaIva}")
-	public void deleteCliente(@Valid @PathVariable String partitaIva) {
-		clienteService.deleteCliente(partitaIva);
+	@PutMapping("/clientiToArchive/{partitaIva}")
+	public Cliente archiveCliente(@Valid @PathVariable String partitaIva) {
+		return clienteService.archiveCliente(partitaIva);
 	}
 }

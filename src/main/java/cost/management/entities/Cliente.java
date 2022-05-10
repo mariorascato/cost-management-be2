@@ -28,6 +28,14 @@ public class Cliente implements Serializable {
 	public void setActive(byte active) {
 		this.active = active;
 	}
+	
+	
+	
+	//private String numeroCivico;
+	@Column(name = "n_civico")
+	private String numeroCivico;
+	
+
 	@Id
 	@Column(name="partita_iva")
 	@NotBlank(message = "partita iva obbligatoria")
@@ -48,16 +56,14 @@ public class Cliente implements Serializable {
 	private String codiceInterscambio;
 	@Email
 	private String pec;
+	
 	private String indirizzo;
-
-	@Column(name="n_civico")
-	private String nCivico;
-
 
 	private String provincia;
 
 	@Column(name="ragione_sociale")
 	@Size(min = 1,max = 30,message = "ragione sociale obbligatoria")
+	
 	private String ragioneSociale;
 
 	private String stato;
@@ -79,7 +85,6 @@ public class Cliente implements Serializable {
 	}
 
 	
-
 	public String getCap() {
 		return this.cap;
 	}
@@ -120,12 +125,13 @@ public class Cliente implements Serializable {
 		this.indirizzo = indirizzo;
 	}
 
-	public String getNCivico() {
-		return this.nCivico;
+
+	public String getNumeroCivico() {
+		return numeroCivico;
 	}
 
-	public void setNCivico(String nCivico) {
-		this.nCivico = nCivico;
+	public void setNumeroCivico(String numeroCivico) {
+		this.numeroCivico = numeroCivico;
 	}
 
 	public String getPec() {
@@ -168,18 +174,6 @@ public class Cliente implements Serializable {
 		this.commesse = commesse;
 	}
 
-	public Commessa addCommessa(Commessa commessa) {
-		getCommesse().add(commessa);
-		commessa.setCliente(this);
-
-		return commessa;
-	}
-
-	public Commessa removeCommessa(Commessa commessa) {
-		getCommesse().remove(commessa);
-		commessa.setCliente(null);
-
-		return commessa;
-	}
+	
 
 }

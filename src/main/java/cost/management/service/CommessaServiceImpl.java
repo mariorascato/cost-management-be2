@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import cost.management.entities.Cliente;
 import cost.management.entities.Commessa;
 import cost.management.repository.CommessaRepository;
 @Service
@@ -43,7 +45,10 @@ public class CommessaServiceImpl implements CommessaService {
 	
 	
 	@Override
-	public Commessa addCommessa(Commessa com) {
+	public Commessa addCommessa(Commessa com ) {
+		
+		
+		
 		return commessaRepository.save(com);
 	}
 	
@@ -56,8 +61,10 @@ public class CommessaServiceImpl implements CommessaService {
 	
 	
 	@Override
-	public void deleteCommessa(String id) {
-		commessaRepository.deleteById(id);
+	public Commessa archiveCommessa(String codice) {
+		Commessa commessaToArchive = commessaRepository.findById(codice).get();
+		commessaToArchive.setActive((byte) 0);
+		return commessaRepository.save(commessaToArchive);
 	}
 
 

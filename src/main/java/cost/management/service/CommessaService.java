@@ -2,6 +2,7 @@ package cost.management.service;
 
 import java.util.List;
 
+import cost.management.entities.Cliente;
 import cost.management.entities.Commessa;
 
 public interface CommessaService {
@@ -20,7 +21,7 @@ public interface CommessaService {
 
 	Commessa updateCommessa(Commessa com, String id);
 
-	void deleteCommessa(String id);
+	Commessa archiveCommessa(String codice);
 
 	
 

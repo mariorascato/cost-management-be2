@@ -128,22 +128,11 @@ public class DipendenteServiceImpl implements DipendenteService {
 
 
 	@Override
-	public void deleteDipendente(String codiceFiscale) {
+	public Dipendente archiveDipendente(String codiceFiscale) {
 
-		Optional<Dipendente> dipendenteToDelete = dipRepo.findById(codiceFiscale);
-
-		if (dipendenteToDelete.isPresent()) {
-			//log.info("***Dipendente trovato!***");
-
-		}
-		try {
-			dipRepo.deleteById(codiceFiscale);
-			//log.info("***Dipendente cancellato!***");
-
-		} catch (IllegalArgumentException ex) {
-			//.info("***Dipendente NON cancellato!***");
-			ex.printStackTrace();
-		}
+		Dipendente dipendenteToArchive = dipRepo.findById(codiceFiscale).get();
+		dipendenteToArchive.setActive((byte) 0);
+		return dipRepo.save(dipendenteToArchive);
 	}
 
 	@Override

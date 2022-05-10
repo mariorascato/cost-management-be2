@@ -36,6 +36,7 @@ public class Commessa implements Serializable {
 	@Column(name="descrizione_commessa")
 	private String descrizioneCommessa;
 
+	
 	private float importo;
 
 	@Column(name="tipologia_commessa")

@@ -16,7 +16,7 @@ public interface DipendenteService {
 
 	Optional<Dipendente> findDipendenteByCodiceFiscale(String codiceFiscale);
 
-	void deleteDipendente(String codiceFiscale);
+	Dipendente archiveDipendente(String codiceFiscale);
 	
 	List<Dipendente> findAllDipendentes();
 }

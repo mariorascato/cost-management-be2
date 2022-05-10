@@ -58,9 +58,10 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 	
 	@Override
-	public void deleteCliente(String id) {
-		if(isValidId(id)) 
-			clienteRepository.deleteById(id);
+	public Cliente archiveCliente(String id) {
+		Cliente clienteToArchive = clienteRepository.findByPartitaIva(id);
+		clienteToArchive.setActive((byte)0);
+		return clienteRepository.save(clienteToArchive);
 	}
 	
 	private boolean isValidId(String id) {

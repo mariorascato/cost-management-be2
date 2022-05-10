@@ -68,12 +68,12 @@ public class DipendenteController {
 	}
 
 	//delete un dipendente
-	@DeleteMapping("/dipendenti/{codiceFiscale}")
-	public Map<String, Boolean> deleteDipendente(@PathVariable String codiceFiscale) {
-		Map<String, Boolean> deletion = new HashMap<>();
-		dipService.deleteDipendente(codiceFiscale);
-		deletion.put("Dipendente Deleted", Boolean.TRUE);
-		return deletion;
+	@PutMapping("/dipendenti/{codiceFiscale}")
+	public Dipendente archiveDipendente(@PathVariable String codiceFiscale) {
+		
+		return dipService.archiveDipendente(codiceFiscale);
+		
+		
 	}
 
 }

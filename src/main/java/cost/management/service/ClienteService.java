@@ -22,6 +22,6 @@ public interface ClienteService {
 
 	Cliente updateCliente(Cliente cli, String id);
 
-	void deleteCliente(String id);
+	Cliente archiveCliente(String id);
 
 }
